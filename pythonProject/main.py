@@ -298,37 +298,42 @@ def loadPictures():
 
 def loadFirstScreen():
     tk.Label(frame, text="AP&FA:", fg='white', font=('Arial', 15), bg='#002e3c').grid(row=0, column=0)
-    tk.Label(frame, text="ARP:", fg='white', font=('Arial', 15), bg='#002e3c').grid(row=0, column=1)
-    tk.Label(frame, text="CC&PP:", fg='white', font=('Arial', 15), bg='#002e3c').grid(row=0, column=2)
-    tk.Label(frame, text="CR:", fg='white', font=('Arial', 15), bg='#002e3c').grid(row=0, column=3)
+    tk.Label(frame, text="ARP:", fg='white', font=('Arial', 15), bg='#002e3c').grid(row=0, column=2)
+    tk.Label(frame, text="CC&PP:", fg='white', font=('Arial', 15), bg='#002e3c').grid(row=0, column=4)
+    tk.Label(frame, text="CR:", fg='white', font=('Arial', 15), bg='#002e3c').grid(row=0, column=6)
     tk.Label(frame, text="FT&TA:", fg='white', font=('Arial', 15), bg='#002e3c').grid(row=2, column=0)
-    tk.Label(frame, text="ICA:", fg='white', font=('Arial', 15), bg='#002e3c').grid(row=2, column=1)
-    tk.Label(frame, text="IF&MA:", fg='white', font=('Arial', 15), bg='#002e3c').grid(row=2, column=2)
-    tk.Label(frame, text="T&E:", fg='white', font=('Arial', 15), bg='#002e3c').grid(row=2, column=3)
+    tk.Label(frame, text="ICA:", fg='white', font=('Arial', 15), bg='#002e3c').grid(row=2, column=2)
+    tk.Label(frame, text="IF&MA:", fg='white', font=('Arial', 15), bg='#002e3c').grid(row=2, column=4)
+    tk.Label(frame, text="T&E:", fg='white', font=('Arial', 15), bg='#002e3c').grid(row=2, column=6)
 
-    FTTA_text = tk.Text(frame, width=30, height=15, font=("Arial", 12))
+
+    tk.Label(frame,bg='#002e3c').grid(row=0, column=1)
+    tk.Label(frame,bg='#002e3c').grid(row=0, column=3)
+    tk.Label(frame,  bg='#002e3c').grid(row=0, column=5)
+
+    FTTA_text = tk.Text(frame, width=25, height=14, font=("Arial", 12), highlightbackground = "#ffd700", highlightthickness = 3, background = "#f1efed")
     FTTA_text.grid(row=3, column=0)
 
-    ICA_text = tk.Text(frame, width=30, height=15, font=("Arial", 12))
-    ICA_text.grid(row=3, column=1)
+    ICA_text = tk.Text(frame,   width=25, height=14, font=("Arial", 12),highlightbackground = "#ffd700", highlightthickness = 3, background = "#f1efed")
+    ICA_text.grid(row=3, column=2)
 
-    IFMA_text = tk.Text(frame, width=30, height=15, font=("Arial", 12))
-    IFMA_text.grid(row=3, column=2)
+    IFMA_text = tk.Text(frame, width=25, height=14, font=("Arial", 12),highlightbackground = "#ffd700", highlightthickness = 3, background = "#f1efed")
+    IFMA_text.grid(row=3, column=4)
 
-    TE_text = tk.Text(frame, width=30, height=15, font=("Arial", 12))
-    TE_text.grid(row=3, column=3)
+    TE_text = tk.Text(frame, width=25, height=14, font=("Arial", 12),highlightbackground = "#ffd700", highlightthickness = 3, background = "#f1efed")
+    TE_text.grid(row=3, column=6)
 
-    APFA_text = tk.Text(frame, width=30, height=15, font=("Arial", 12))
+    APFA_text = tk.Text(frame, width=25, height=14, font=("Arial", 12),highlightbackground = "#ffd700", highlightthickness = 3, background = "#f1efed")
     APFA_text.grid(row=1, column=0)
 
-    ARP_text = tk.Text(frame, width=30, height=15, font=("Arial", 12))
-    ARP_text.grid(row=1, column=1)
+    ARP_text = tk.Text(frame, width=25, height=14, font=("Arial", 12),highlightbackground = "#ffd700", highlightthickness = 3, background = "#f1efed")
+    ARP_text.grid(row=1, column=2)
 
-    CCPP_text = tk.Text(frame, width=30, height=15, font=("Arial", 12))
-    CCPP_text.grid(row=1, column=2)
+    CCPP_text = tk.Text(frame, width=25, height=14, font=("Arial", 12),highlightbackground = "#ffd700", highlightthickness = 3, background = "#f1efed")
+    CCPP_text.grid(row=1, column=4)
 
-    CR_text = tk.Text(frame, width=30, height=15, font=("Arial", 12))
-    CR_text.grid(row=1, column=3)
+    CR_text = tk.Text(frame, width=25, height=14, font=("Arial", 12),highlightbackground = "#ffd700", highlightthickness = 3, background = "#f1efed")
+    CR_text.grid(row=1, column=6)
 
     return FTTA_text, ICA_text, IFMA_text, TE_text, APFA_text, ARP_text, CCPP_text, CR_text
 
@@ -351,7 +356,7 @@ frame = tk.Frame(root, bg='#002e3c')
 frame2 = tk.Frame(root, bg='#002e3c')
 frame3 = tk.Frame(root, bg='#002e3c')
 
-frame.columnconfigure(3, weight=1)
+frame.columnconfigure(6, weight=1)
 frame2.columnconfigure(2, weight=1)
 frame3.columnconfigure(0, weight=1)
 
