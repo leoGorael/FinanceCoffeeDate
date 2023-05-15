@@ -6,6 +6,10 @@ from PIL import Image, ImageTk
 from subprocess import Popen
 import time
 import pandas as pd
+from pynput.keyboard import Key, Controller
+
+
+
 
 
 def getWeekcount():
@@ -118,7 +122,7 @@ def execute():
         checkResult = checkHistory(pairs2, pair_History)
 
     write_to_csv(pairs2)
-    print("Count:", count)
+    #print("Count:", count)
     return create_GUI(tk, altElement(pairs2))
 
 
@@ -153,6 +157,13 @@ def erasePairs():
 
         label2.config(text="Week: 0")
 
+def screen_shot():
+    keyboard = Controller()
+    keyboard.press(Key.alt)
+    keyboard.press(Key.print_screen)
+
+    keyboard.release(Key.alt)
+    keyboard.release(Key.print_screen)
 
 def create_GUI(tk, pairs):
     button.pack_forget()
@@ -163,33 +174,46 @@ def create_GUI(tk, pairs):
     frame.pack_forget()
 
     frame4 = tk.Frame(root, bg='#002e3c')
+    frame5 = tk.Frame(root, bg='#002e3c')
 
     label3 = tk.Label(root, text="Your next Coffee Date is with: \n \n", fg='white', font=('Arial', 20), bg='#002e3c')
     label3.pack()
 
-    frame4.columnconfigure(4, weight=1)
+    frame4.columnconfigure(8, weight=1)
+    frame5.columnconfigure(1, weight=1)
     row = 0
     col = 0
+    alternate = False
     for p in pairs:
+        if row % 2 == 0:
+            color = "white"
+        else:
+            color = "#ffd700"
 
-        if col != 4:
-            group1 = tk.Label(frame4, text=p[0] + p[0] + ' ------ ' + p[1] + p[1], font=('Arial', 20), bg="#002e3c",
-                              fg="white")
-            group1.grid(row=row, column=col + 1, sticky=tk.W + tk.E)
-            col += 1
+        if col != 8:
+            group1 = tk.Label(frame4, text=p[0] + ' - ' + p[1] , font=('Arial', 16), bg="#002e3c",
+                              fg=color)
+            group1.grid(row=row, column=col + 1)
+            col += 2
 
         else:
-            group1 = tk.Label(frame4, text=p[0] + p[0] + ' ------ ' + p[1] + p[1], font=('Arial', 20), bg="#002e3c",
-                              fg="white")
-            group1.grid(row=row, column=4, sticky=tk.W + tk.E)
+            group1 = tk.Label(frame4, text=p[0]  + ' - ' + p[1], font=('Arial', 16), bg="#002e3c",
+                              fg=color)
+            group1.grid(row=row, column=8)
             row += 1
             col = 0
+        alternate = not alternate
+
+    button4 = tk.Button(frame5, image=copy, bg="#002e3c", border=0, font=('Arial', 20), command=screen_shot)
+    button4.grid(row=row+3, column=0)
 
     frame4.pack()
+    frame5.pack()
 
 
 def loadTeamMembers():
-    APFA = pd.read_excel('teammembers.xlsx', sheet_name='AP&FA')
+    APFA = pd.read_excel('teammembers.xl'
+                         'sx', sheet_name='AP&FA')
     ARP = pd.read_excel('teammembers.xlsx', sheet_name='ARP')
     CCPP = pd.read_excel('teammembers.xlsx', sheet_name='CC&PP')
     CR = pd.read_excel('teammembers.xlsx', sheet_name='CR')
@@ -264,7 +288,12 @@ def loadPictures():
     img = image.resize((150, 55))
     editHistory = ImageTk.PhotoImage(img)
 
-    return reset, magic, logo, editMembers, editHistory
+    image = Image.open('copy.PNG')
+    img = image.resize((200, 65))
+    copy = ImageTk.PhotoImage(img)
+
+
+    return reset, magic, logo, editMembers, editHistory, copy
 
 
 def loadFirstScreen():
@@ -310,7 +339,7 @@ root.config(bg="#002e3c")
 w, h = root.winfo_screenwidth(), root.winfo_screenheight()
 root.geometry("%dx%d+0+0" % (w, h))
 
-reset, magic, logo, editMembers, editHistory = loadPictures()
+reset, magic, logo, editMembers, editHistory, copy = loadPictures()
 
 label = tk.Label(root, image=logo, bg="#002e3c")
 label.pack(side=TOP, anchor=NW, pady=10, padx=10)
