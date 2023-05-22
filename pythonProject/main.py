@@ -1,6 +1,8 @@
 import csv
 import tkinter as tk
 import random
+import webbrowser
+
 import pandas as pd
 from tkinter import END, TOP, NW, messagebox
 from PIL import Image, ImageTk
@@ -38,14 +40,14 @@ def pop_single(lst):
 
 
 def preparePairs():
-    teamMembers_apfa = APFA_text.get("1.0", END).split()
-    teamMembers_arp = ARP_text.get("1.0", END).split()
-    teamMembers_ccpp = CCPP_text.get("1.0", END).split()
-    teamMembers_cr = CR_text.get("1.0", END).split()
-    teamMembers_ftta = FTTA_text.get("1.0", END).split()
-    teamMembers_ica = ICA_text.get("1.0", END).split()
-    teamMembers_ifma = IFMA_text.get("1.0", END).split()
-    teamMembers_te = TE_text.get("1.0", END).split()
+    teamMembers_apfa = list(filter(None, (APFA_text.get("1.0", END).split('\n'))))
+    teamMembers_arp = list(filter(None, (ARP_text.get("1.0", END).split('\n'))))
+    teamMembers_ccpp = list(filter(None, (CCPP_text.get("1.0", END).split('\n'))))
+    teamMembers_cr = list(filter(None, (CR_text.get("1.0", END).split('\n'))))
+    teamMembers_ftta = list(filter(None, (FTTA_text.get("1.0", END).split('\n'))))
+    teamMembers_ica = list(filter(None, (ICA_text.get("1.0", END).split('\n'))))
+    teamMembers_ifma = list(filter(None, (IFMA_text.get("1.0", END).split('\n'))))
+    teamMembers_te = list(filter(None, (TE_text.get("1.0", END).split('\n'))))
 
     teee = [teamMembers_apfa, teamMembers_arp, teamMembers_ccpp, teamMembers_cr, teamMembers_ftta, teamMembers_ica,
             teamMembers_ifma, teamMembers_te]
@@ -176,6 +178,8 @@ def create_GUI(tk, pairs):
     buttonsFrame.pack_forget()
     executeButtonFrame.pack_forget()
     mainFrame.pack_forget()
+    frameContact.pack_forget()
+
 
     frame4 = tk.Frame(root, bg='#002e3c')
     frame5 = tk.Frame(root, bg='#002e3c')
@@ -192,16 +196,19 @@ def create_GUI(tk, pairs):
             color = "#ffd700"
 
         if col != 8:
-            tk.Label(frame4, text=p[0] + ' - ' + p[1], font=('Arial', 16), bg="#002e3c", fg=color).grid(row=row,column=col + 1)
+            tk.Label(frame4, text=p[0][0:15] + ' - ' + p[1][0:15], font=('Arial', 12, 'bold'), bg="#002e3c",
+                     fg=color).grid(row=row, column=col + 1)
             col += 2
         else:
-            tk.Label(frame4, text=p[0] + ' - ' + p[1], font=('Arial', 16), bg="#002e3c", fg=color).grid(row=row,column=8)
+            tk.Label(frame4, text=p[0][0:15] + ' - ' + p[1][0:15], font=('Arial', 12, 'bold'), bg="#002e3c",
+                     fg=color).grid(row=row, column=8)
             row += 1
             col = 0
         alternate = not alternate
 
     tk.Label(frame4, bg="#002e3c").grid(row=row + 1, column=0)
-    tk.Button(frame5, image=copy, bg="#002e3c", border=0, font=('Arial', 20), command=screen_shot).grid(row=row + 2,column=0)
+    tk.Button(frame5, image=copy, bg="#002e3c", border=0, font=('Arial', 20), command=screen_shot).grid(row=row + 2,
+                                                                                                        column=0)
     frame4.pack()
     frame5.pack()
 
@@ -266,16 +273,21 @@ def editDateHistory():
 
 
 def loadPictures():
-    magic = ImageTk.PhotoImage(Image.open('icons/magicButton6.png').resize((250, 60)))
-    reset = ImageTk.PhotoImage(Image.open('icons/reset.png').resize((330, 60)))
+    magic = ImageTk.PhotoImage(Image.open('icons/magicButton6.png').resize((250, 55)))
+    reset = ImageTk.PhotoImage(Image.open('icons/reset.png').resize((300, 55)))
     logofull = ImageTk.PhotoImage(Image.open('icons/logofull.png').resize((600, 70)))
-    editMembers = ImageTk.PhotoImage(Image.open('icons/editMembers.PNG').resize((330, 60)))
-    editHistory = ImageTk.PhotoImage(Image.open('icons/editHistory.PNG').resize((330, 60)))
-    copy = ImageTk.PhotoImage(Image.open('icons/copy.PNG').resize((330, 60)))
-    last = ImageTk.PhotoImage(Image.open('icons/last.png').resize((330, 60)))
+    editMembers = ImageTk.PhotoImage(Image.open('icons/editMembers.PNG').resize((300, 55)))
+    editHistory = ImageTk.PhotoImage(Image.open('icons/editHistory.PNG').resize((300, 55)))
+    copy = ImageTk.PhotoImage(Image.open('icons/copy.PNG').resize((300, 55)))
+    last = ImageTk.PhotoImage(Image.open('icons/last.png').resize((300, 55)))
+    design = ImageTk.PhotoImage(Image.open('icons/design.png').resize((55, 55)))
 
-    return reset, magic, editMembers, editHistory, copy, last, logofull
+    return reset, magic, editMembers, editHistory, copy, last, logofull, design
 
+def showDeveloper():
+    answer = tk.messagebox.askyesno('Contact Information', 'If you have any questions or concerns regarding the application please contact Linard Gorael Sinabak.\nDo you wish to reach out?')
+    if answer:
+        webbrowser.open('https://www.linkedin.com/in/linard-gorael-sinabak/')
 
 def loadTeamPictures():
     apfa = ImageTk.PhotoImage(Image.open('teams/apfa.png').resize((120, 30)))
@@ -304,28 +316,28 @@ def loadFirstScreen(mainFrame):
     tk.Label(mainFrame, bg='#002e3c').grid(row=0, column=3)
     tk.Label(mainFrame, bg='#002e3c').grid(row=0, column=5)
 
-    FTTA_text = tk.Text(mainFrame, width=25, height=14, font=("Arial", 12, 'bold'), background="#f1efed")
+    FTTA_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12, 'bold'), background="#f1efed")
     FTTA_text.grid(row=3, column=0)
 
-    ICA_text = tk.Text(mainFrame, width=25, height=14, font=("Arial", 12, 'bold'), background="#f1efed")
+    ICA_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12, 'bold'), background="#f1efed")
     ICA_text.grid(row=3, column=2)
 
-    IFMA_text = tk.Text(mainFrame, width=25, height=14, font=("Arial", 12, 'bold'), background="#f1efed")
+    IFMA_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12, 'bold'), background="#f1efed")
     IFMA_text.grid(row=3, column=4)
 
-    TE_text = tk.Text(mainFrame, width=25, height=14, font=("Arial", 12, 'bold'), background="#f1efed")
+    TE_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12, 'bold'), background="#f1efed")
     TE_text.grid(row=3, column=6)
 
-    APFA_text = tk.Text(mainFrame, width=25, height=14, font=("Arial", 12, 'bold'), background="#f1efed")
+    APFA_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12, 'bold'), background="#f1efed")
     APFA_text.grid(row=1, column=0)
 
-    ARP_text = tk.Text(mainFrame, width=25, height=14, font=("Arial", 12, 'bold'), background="#f1efed")
+    ARP_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12, 'bold'), background="#f1efed")
     ARP_text.grid(row=1, column=2)
 
-    CCPP_text = tk.Text(mainFrame, width=25, height=14, font=("Gotham", 12, 'bold'), background="#f1efed")
+    CCPP_text = tk.Text(mainFrame, width=22, height=12, font=("Gotham", 12, 'bold'), background="#f1efed")
     CCPP_text.grid(row=1, column=4)
 
-    CR_text = tk.Text(mainFrame, width=25, height=14, font=("Arial", 12, 'bold'), background="#f1efed")
+    CR_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12, 'bold'), background="#f1efed")
     CR_text.grid(row=1, column=6)
 
     loadTeamMembers(FTTA_text, ICA_text, IFMA_text, TE_text, APFA_text, ARP_text, CCPP_text, CR_text)
@@ -333,20 +345,24 @@ def loadFirstScreen(mainFrame):
     return FTTA_text, ICA_text, IFMA_text, TE_text, APFA_text, ARP_text, CCPP_text, CR_text
 
 
-def loadButtons(executeButtonFrame, buttonsFrame):
+def loadButtons(executeButtonFrame, buttonsFrame, frameContact):
     tk.Button(executeButtonFrame, image=magic, bg="#002e3c", border=0, command=retrieve_input).grid(row=1, column=0)
     tk.Button(buttonsFrame, image=reset, bg="#002e3c", border=0, command=erasePairs).grid(row=2, column=0)
     tk.Button(buttonsFrame, image=last, bg="#002e3c", border=0, command=showLastWeek).grid(row=2, column=2)
     tk.Button(buttonsFrame, image=editHistory, bg="#002e3c", border=0, command=editDateHistory).grid(row=4, column=0)
     tk.Button(buttonsFrame, image=editMembers, bg="#002e3c", border=0, command=editTeamMembers).grid(row=4, column=2)
+    tk.Button(frameContact, image=design, bg="#002e3c", border=0, command=showDeveloper).grid(row=0, column=1)
+    tk.Label(frameContact, bg="#002e3c", text="\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t").grid(row=0, column=0)
 
     tk.Label(executeButtonFrame, bg="#002e3c").grid(row=0, column=0)
     tk.Label(buttonsFrame, bg="#002e3c").grid(row=4, column=1)
     tk.Label(buttonsFrame, bg="#002e3c").grid(row=2, column=1)
 
+
 def loadHeader(root):
     tk.Label(root, image=logofull, bg="#002e3c").pack(side=TOP, anchor=NW, pady=10, padx=10)
-    labelWeekCount = tk.Label(root, text="Week: " + getWeekcount(), fg='white', font=('Arial', 20, 'bold'), bg='#002e3c')
+    labelWeekCount = tk.Label(root, text="Week: " + getWeekcount(), fg='white', font=('Arial', 16, 'bold'),
+                              bg='#002e3c')
     labelWeekCount.pack()
 
     return labelWeekCount
@@ -361,16 +377,18 @@ root.geometry("%dx%d+0+0" % (w, h))
 mainFrame = tk.Frame(root, bg='#002e3c')
 executeButtonFrame = tk.Frame(root, bg='#002e3c')
 buttonsFrame = tk.Frame(root, bg='#002e3c')
+frameContact = tk.Frame(root, bg='#002e3c')
 
-reset, magic, editMembers, editHistory, copy, last, logofull = loadPictures()
+reset, magic, editMembers, editHistory, copy, last, logofull, design = loadPictures()
 apfa, arp, ccpp, cr, ftta, ica, ifma, te = loadTeamPictures()
 FTTA_text, ICA_text, IFMA_text, TE_text, APFA_text, ARP_text, CCPP_text, CR_text = loadFirstScreen(mainFrame)
 
 labelWeekCount = loadHeader(root)
-loadButtons(executeButtonFrame, buttonsFrame)
+loadButtons(executeButtonFrame, buttonsFrame, frameContact)
 
 mainFrame.pack()
 executeButtonFrame.pack()
 buttonsFrame.pack()
+frameContact.pack()
 
 root.mainloop()
