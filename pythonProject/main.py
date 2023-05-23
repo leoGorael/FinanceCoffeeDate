@@ -273,14 +273,14 @@ def editDateHistory():
 
 
 def loadPictures():
-    magic = ImageTk.PhotoImage(Image.open('icons/magicButton6.png').resize((250, 55)))
-    reset = ImageTk.PhotoImage(Image.open('icons/reset.png').resize((300, 55)))
+    magic = ImageTk.PhotoImage(Image.open('icons/magicButton6.png').resize((230, 50)))
+    reset = ImageTk.PhotoImage(Image.open('icons/reset.png').resize((270, 50)))
     logofull = ImageTk.PhotoImage(Image.open('icons/logofull.png').resize((600, 70)))
-    editMembers = ImageTk.PhotoImage(Image.open('icons/editMembers.PNG').resize((300, 55)))
-    editHistory = ImageTk.PhotoImage(Image.open('icons/editHistory.PNG').resize((300, 55)))
-    copy = ImageTk.PhotoImage(Image.open('icons/copy.PNG').resize((300, 55)))
-    last = ImageTk.PhotoImage(Image.open('icons/last.png').resize((300, 55)))
-    design = ImageTk.PhotoImage(Image.open('icons/design.png').resize((55, 55)))
+    editMembers = ImageTk.PhotoImage(Image.open('icons/editMembers.PNG').resize((270, 50)))
+    editHistory = ImageTk.PhotoImage(Image.open('icons/editHistory.PNG').resize((270, 50)))
+    copy = ImageTk.PhotoImage(Image.open('icons/copy.PNG').resize((270, 50)))
+    last = ImageTk.PhotoImage(Image.open('icons/last.png').resize((270, 50)))
+    design = ImageTk.PhotoImage(Image.open('icons/design.png').resize((50, 50)))
 
     return reset, magic, editMembers, editHistory, copy, last, logofull, design
 
@@ -316,28 +316,28 @@ def loadFirstScreen(mainFrame):
     tk.Label(mainFrame, bg='#002e3c').grid(row=0, column=3)
     tk.Label(mainFrame, bg='#002e3c').grid(row=0, column=5)
 
-    FTTA_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12, 'bold'), background="#f1efed")
+    FTTA_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12), background="#f1efed")
     FTTA_text.grid(row=3, column=0)
 
-    ICA_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12, 'bold'), background="#f1efed")
+    ICA_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12), background="#f1efed")
     ICA_text.grid(row=3, column=2)
 
-    IFMA_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12, 'bold'), background="#f1efed")
+    IFMA_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12), background="#f1efed")
     IFMA_text.grid(row=3, column=4)
 
-    TE_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12, 'bold'), background="#f1efed")
+    TE_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12), background="#f1efed")
     TE_text.grid(row=3, column=6)
 
-    APFA_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12, 'bold'), background="#f1efed")
+    APFA_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12), background="#f1efed")
     APFA_text.grid(row=1, column=0)
 
-    ARP_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12, 'bold'), background="#f1efed")
+    ARP_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12), background="#f1efed")
     ARP_text.grid(row=1, column=2)
 
-    CCPP_text = tk.Text(mainFrame, width=22, height=12, font=("Gotham", 12, 'bold'), background="#f1efed")
+    CCPP_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12), background="#f1efed")
     CCPP_text.grid(row=1, column=4)
 
-    CR_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12, 'bold'), background="#f1efed")
+    CR_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12), background="#f1efed")
     CR_text.grid(row=1, column=6)
 
     loadTeamMembers(FTTA_text, ICA_text, IFMA_text, TE_text, APFA_text, ARP_text, CCPP_text, CR_text)
@@ -352,7 +352,7 @@ def loadButtons(executeButtonFrame, buttonsFrame, frameContact):
     tk.Button(buttonsFrame, image=editHistory, bg="#002e3c", border=0, command=editDateHistory).grid(row=4, column=0)
     tk.Button(buttonsFrame, image=editMembers, bg="#002e3c", border=0, command=editTeamMembers).grid(row=4, column=2)
     tk.Button(frameContact, image=design, bg="#002e3c", border=0, command=showDeveloper).grid(row=0, column=1)
-    tk.Label(frameContact, bg="#002e3c", text="\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t").grid(row=0, column=0)
+    tk.Label(frameContact, bg="#002e3c", text="\t\t\t\t\t\t\t\t\t\t\t\t\t").grid(row=0, column=0)
 
     tk.Label(executeButtonFrame, bg="#002e3c").grid(row=0, column=0)
     tk.Label(buttonsFrame, bg="#002e3c").grid(row=4, column=1)
