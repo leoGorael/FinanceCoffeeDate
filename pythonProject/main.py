@@ -316,28 +316,28 @@ def loadFirstScreen(mainFrame):
     tk.Label(mainFrame, bg='#002e3c').grid(row=0, column=3)
     tk.Label(mainFrame, bg='#002e3c').grid(row=0, column=5)
 
-    FTTA_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12), background="#f1efed")
+    FTTA_text = tk.Text(mainFrame, width=22, height=8, font=("Arial", 12), background="#f1efed")
     FTTA_text.grid(row=3, column=0)
 
-    ICA_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12), background="#f1efed")
+    ICA_text = tk.Text(mainFrame, width=22, height=8, font=("Arial", 12), background="#f1efed")
     ICA_text.grid(row=3, column=2)
 
-    IFMA_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12), background="#f1efed")
+    IFMA_text = tk.Text(mainFrame, width=22, height=8, font=("Arial", 12), background="#f1efed")
     IFMA_text.grid(row=3, column=4)
 
-    TE_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12), background="#f1efed")
+    TE_text = tk.Text(mainFrame, width=22, height=8, font=("Arial", 12), background="#f1efed")
     TE_text.grid(row=3, column=6)
 
-    APFA_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12), background="#f1efed")
+    APFA_text = tk.Text(mainFrame, width=22, height=8, font=("Arial", 12), background="#f1efed")
     APFA_text.grid(row=1, column=0)
 
-    ARP_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12), background="#f1efed")
+    ARP_text = tk.Text(mainFrame, width=22, height=8, font=("Arial", 12), background="#f1efed")
     ARP_text.grid(row=1, column=2)
 
-    CCPP_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12), background="#f1efed")
+    CCPP_text = tk.Text(mainFrame, width=22, height=8, font=("Arial", 12), background="#f1efed")
     CCPP_text.grid(row=1, column=4)
 
-    CR_text = tk.Text(mainFrame, width=22, height=12, font=("Arial", 12), background="#f1efed")
+    CR_text = tk.Text(mainFrame, width=22, height=8, font=("Arial", 12), background="#f1efed")
     CR_text.grid(row=1, column=6)
 
     loadTeamMembers(FTTA_text, ICA_text, IFMA_text, TE_text, APFA_text, ARP_text, CCPP_text, CR_text)
