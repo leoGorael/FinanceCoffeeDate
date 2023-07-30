@@ -59,6 +59,7 @@ def generateCoffeePairs(teams, team_pairs):
     tmp = []
 
     while teams:
+
         rand1, rand2 = pop_random(teams)
         if rand2 != 'Superpower':
             while rand1 and rand2:
@@ -76,11 +77,14 @@ def generateCoffeePairs(teams, team_pairs):
                 tmp.extend([rand1])
 
     if len(tmp) > 1:
+
         generateCoffeePairs(tmp, team_pairs)
     elif len(tmp) == 1:
         while tmp[0]:
             pp1, pp2 = pop_random(tmp[0])
             team_pairs.append((pp2, pp1))
+            team_pairs.append((pp1, pp2))
+
     else:
         return team_pairs
 
@@ -120,6 +124,7 @@ def execute():
         checkResult = checkHistory(pairs2, pair_History)
 
     write_to_csv(pairs2)
+
     return create_GUI(tk, altElement(pairs2))
 
 
@@ -195,7 +200,7 @@ def create_GUI(tk, pairs):
         else:
             color = "#ffd700"
 
-        if col != 8:
+        if col != 4:
             tk.Label(frame4, text=p[0][0:15] + ' - ' + p[1][0:15], font=('Arial', 12, 'bold'), bg="#002e3c",
                      fg=color).grid(row=row, column=col + 1)
             col += 2
@@ -228,6 +233,7 @@ def loadTeamMembers(FTTA_text, ICA_text, IFMA_text, TE_text, APFA_text, ARP_text
     ICA = pd.read_excel('data/pallteammembers.xlsx', sheet_name='ICA')
     IFMA = pd.read_excel('data/pallteammembers.xlsx', sheet_name='IF&MA')
     TE = pd.read_excel('data/pallteammembers.xlsx', sheet_name='T&E')
+
 
     for index, row in APFA.iterrows():
         APFA_text.insert(END, row[0] + "\n")
@@ -316,28 +322,28 @@ def loadFirstScreen(mainFrame):
     tk.Label(mainFrame, bg='#002e3c').grid(row=0, column=3)
     tk.Label(mainFrame, bg='#002e3c').grid(row=0, column=5)
 
-    FTTA_text = tk.Text(mainFrame, width=22, height=8, font=("Arial", 12), background="#f1efed")
+    FTTA_text = tk.Text(mainFrame, width=21, height=7, font=("Arial", 12), background="#f1efed")
     FTTA_text.grid(row=3, column=0)
 
-    ICA_text = tk.Text(mainFrame, width=22, height=8, font=("Arial", 12), background="#f1efed")
+    ICA_text = tk.Text(mainFrame, width=21, height=7, font=("Arial", 12), background="#f1efed")
     ICA_text.grid(row=3, column=2)
 
-    IFMA_text = tk.Text(mainFrame, width=22, height=8, font=("Arial", 12), background="#f1efed")
+    IFMA_text = tk.Text(mainFrame, width=21, height=7, font=("Arial", 12), background="#f1efed")
     IFMA_text.grid(row=3, column=4)
 
-    TE_text = tk.Text(mainFrame, width=22, height=8, font=("Arial", 12), background="#f1efed")
+    TE_text = tk.Text(mainFrame, width=21, height=7, font=("Arial", 12), background="#f1efed")
     TE_text.grid(row=3, column=6)
 
-    APFA_text = tk.Text(mainFrame, width=22, height=8, font=("Arial", 12), background="#f1efed")
+    APFA_text = tk.Text(mainFrame, width=21, height=7, font=("Arial", 12), background="#f1efed")
     APFA_text.grid(row=1, column=0)
 
-    ARP_text = tk.Text(mainFrame, width=22, height=8, font=("Arial", 12), background="#f1efed")
+    ARP_text = tk.Text(mainFrame, width=21, height=7, font=("Arial", 12), background="#f1efed")
     ARP_text.grid(row=1, column=2)
 
-    CCPP_text = tk.Text(mainFrame, width=22, height=8, font=("Arial", 12), background="#f1efed")
+    CCPP_text = tk.Text(mainFrame, width=21, height=7, font=("Arial", 12), background="#f1efed")
     CCPP_text.grid(row=1, column=4)
 
-    CR_text = tk.Text(mainFrame, width=22, height=8, font=("Arial", 12), background="#f1efed")
+    CR_text = tk.Text(mainFrame, width=21, height=7, font=("Arial", 12), background="#f1efed")
     CR_text.grid(row=1, column=6)
 
     loadTeamMembers(FTTA_text, ICA_text, IFMA_text, TE_text, APFA_text, ARP_text, CCPP_text, CR_text)
@@ -361,9 +367,10 @@ def loadButtons(executeButtonFrame, buttonsFrame, frameContact):
 
 def loadHeader(root):
     tk.Label(root, image=logofull, bg="#002e3c").pack(side=TOP, anchor=NW, pady=10, padx=10)
-    labelWeekCount = tk.Label(root, text="Week: " + getWeekcount(), fg='white', font=('Arial', 16, 'bold'),
+    labelWeekCount = tk.Label(root, text="Week: " + getWeekcount(), fg='white', font=('Arial', 14, 'bold'),
                               bg='#002e3c')
     labelWeekCount.pack()
+
 
     return labelWeekCount
 
@@ -382,6 +389,7 @@ frameContact = tk.Frame(root, bg='#002e3c')
 reset, magic, editMembers, editHistory, copy, last, logofull, design = loadPictures()
 apfa, arp, ccpp, cr, ftta, ica, ifma, te = loadTeamPictures()
 FTTA_text, ICA_text, IFMA_text, TE_text, APFA_text, ARP_text, CCPP_text, CR_text = loadFirstScreen(mainFrame)
+
 
 labelWeekCount = loadHeader(root)
 loadButtons(executeButtonFrame, buttonsFrame, frameContact)
